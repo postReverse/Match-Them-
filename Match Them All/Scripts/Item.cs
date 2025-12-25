@@ -15,7 +15,7 @@ public class Item : MonoBehaviour
     }
     public void DisableShadows()
     {
-
+        Renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
     }
 
     public void DisablePhysics()

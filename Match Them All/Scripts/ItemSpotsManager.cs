@@ -1,10 +1,13 @@
 using UnityEngine;
 using System;
+using System.Runtime.CompilerServices;
 
 public class ItemSpotsManager : MonoBehaviour
 {
     [Header("Elements")]
-    [SerializeField] private Transform ItemSpot;
+    [SerializeField] private Transform ItemSpotParent;
+    private ItemSpot[] spots;
+
 
     [Header("Settings")]
     [SerializeField] private Vector3 ItemLocalPositionOnSpot;
@@ -13,7 +16,11 @@ public class ItemSpotsManager : MonoBehaviour
     private void Awake()
     {
         ImputManager.ItemClicked += OnItemClicked;
+
+        StoreSpots();
+
     }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,8 +36,34 @@ public class ItemSpotsManager : MonoBehaviour
 
     private void OnItemClicked(Item item)
     {
-        // turn the item as a child of the item spot
-        item.transform.SetParent(ItemSpot);
+
+        if ( !IsFreeSpotAvailable())
+        {
+            Debug.LogWarning("No free spots available! ");
+            return;
+        }
+
+
+        HandleItemClicked(item);
+        
+    }
+
+    private void HandleItemClicked(Item item)
+    {
+        MoveItemToFirstFreeSpot(item);
+    }
+
+    private void MoveItemToFirstFreeSpot(Item item)
+    {
+        ItemSpot targetSpot = GetFreeSpot();
+
+        if (targetSpot == null )
+        {
+            Debug.LogError("Target spot is null => this should not happen!");
+            return;
+        }
+
+        targetSpot.Populate(item);
 
         //scale the item down, set it's local position 0 0 0 
         item.transform.localPosition = ItemLocalPositionOnSpot;
@@ -41,6 +74,17 @@ public class ItemSpotsManager : MonoBehaviour
 
         // disable it's collider / physics
         item.DisablePhysics();
+
+    }
+
+    private ItemSpot GetFreeSpot() 
+    {
+        for (int i = 0; i < spots.Length; i++)
+        {
+            if (spots[i].IsEmpty())
+                return spots[i];
+        }
+        return null;
     }
 
     private void OnDestroy()
@@ -48,4 +92,24 @@ public class ItemSpotsManager : MonoBehaviour
         ImputManager.ItemClicked -= OnItemClicked;
     }
 
+    private bool IsFreeSpotAvailable()
+    {
+        for ( int i = 0; i < spots.Length; i++ )
+        {
+            if (spots[i].IsEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void StoreSpots()
+    {
+        spots = new ItemSpot[ItemSpotParent.childCount];
+        for (int i = 0; i < ItemSpotParent.childCount; i++)
+            spots[i] = ItemSpotParent.GetChild(i).GetComponent<ItemSpot>();
+        
+    }
+
 }
+
