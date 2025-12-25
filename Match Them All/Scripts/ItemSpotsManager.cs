@@ -35,6 +35,7 @@ public class ItemSpotsManager : MonoBehaviour
         //scale the item down, set it's local position 0 0 0 
         item.transform.localPosition = ItemLocalPositionOnSpot;
         item.transform.localScale = ItemLocalScaleOnSpot;
+        item.transform.localRotation = Quaternion.identity;
         // disable it's shadow
         item.DisableShadows();
 
