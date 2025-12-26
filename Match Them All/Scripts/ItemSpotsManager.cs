@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using Unity.Collections;
 
 public class ItemSpotsManager : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class ItemSpotsManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private Vector3 ItemLocalPositionOnSpot;
     [SerializeField] private Vector3 ItemLocalScaleOnSpot;
+    private bool isBusy;
+
+    [Header("Data")]
+    private Dictionary<EItemName,ItemMergeData> itemMergeDataDictionary = new Dictionary<EItemName,ItemMergeData>();
+
+
 
     private void Awake()
     {
@@ -37,12 +44,19 @@ public class ItemSpotsManager : MonoBehaviour
     private void OnItemClicked(Item item)
     {
 
+        if (isBusy)
+        {
+            Debug.LogWarning("ItemSpotsManager is busy...");
+            return;
+        }
+
         if ( !IsFreeSpotAvailable())
         {
             Debug.LogWarning("No free spots available! ");
             return;
         }
 
+        isBusy = true; 
 
         HandleItemClicked(item);
         
@@ -50,7 +64,16 @@ public class ItemSpotsManager : MonoBehaviour
 
     private void HandleItemClicked(Item item)
     {
-        MoveItemToFirstFreeSpot(item);
+
+        if (itemMergeDataDictionary.ContainsKey(item.ItemName))
+            HandleItemMergeDataFound(item); 
+        else
+            MoveItemToFirstFreeSpot(item);
+    }
+
+    private void HandleItemMergeDataFound(Item item)
+    {
+        throw new NotImplementedException();
     }
 
     private void MoveItemToFirstFreeSpot(Item item)
@@ -62,6 +85,8 @@ public class ItemSpotsManager : MonoBehaviour
             Debug.LogError("Target spot is null => this should not happen!");
             return;
         }
+
+        CreateItemMergeData(item);
 
         targetSpot.Populate(item);
 
@@ -75,6 +100,27 @@ public class ItemSpotsManager : MonoBehaviour
         // disable it's collider / physics
         item.DisablePhysics();
 
+        HandleFirstItemReachedSpot(item);
+
+
+    }
+
+    private void HandleFirstItemReachedSpot(Item item)
+    {
+        CheckForGameOver();
+    }
+
+    private void CheckForGameOver()
+    {
+        if (GetFreeSpot() == null)
+            Debug.LogWarning("Game Over");
+        else
+            isBusy = false;
+    }
+
+    private void CreateItemMergeData(Item item)
+    {
+        itemMergeDataDictionary.Add(item.ItemName, new ItemMergeData(item));
     }
 
     private ItemSpot GetFreeSpot() 
