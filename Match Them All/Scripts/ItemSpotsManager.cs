@@ -112,11 +112,11 @@ public class ItemSpotsManager : MonoBehaviour
             return;
         }
 
-        MoveItemToSpot(item, IdealSpot);
+        MoveItemToSpot(item, IdealSpot, () => HandleItemReachedSpot(item));
 
     }
 
-    private void MoveItemToSpot(Item item, ItemSpot targetSpot, bool checkForMerge = true )
+    private void MoveItemToSpot(Item item, ItemSpot targetSpot, Action completeCallBack)
     {
 
         targetSpot.Populate(item);
@@ -131,7 +131,9 @@ public class ItemSpotsManager : MonoBehaviour
         // disable it's collider / physics
         item.DisablePhysics();
 
-        HandleItemReachedSpot(item, checkForMerge);
+        completeCallBack?.Invoke();
+
+        //HandleItemReachedSpot(item, checkForMerge);
 
     }
 
@@ -186,7 +188,7 @@ public class ItemSpotsManager : MonoBehaviour
             }
 
             spot.Clear();
-            MoveItemToSpot(item, targetSpot, false);
+            MoveItemToSpot(item, targetSpot, () => HandleItemReachedSpot(item,false));
         }
 
         HandleAllItemsMovedToTheLeft();
@@ -225,9 +227,9 @@ public class ItemSpotsManager : MonoBehaviour
                 return;
             }
 
-            MoveItemToSpot(item, targetSpot, false);
+            MoveItemToSpot(item, targetSpot, ()=> HandleItemReachedSpot(item, false));
         }
-        MoveItemToSpot(itemToPlace, idealSpot);
+        MoveItemToSpot(itemToPlace, idealSpot, ()=> HandleItemReachedSpot(itemToPlace));
     }
 
     private void MoveItemToFirstFreeSpot(Item item)
@@ -242,20 +244,7 @@ public class ItemSpotsManager : MonoBehaviour
 
         CreateItemMergeData(item);
 
-        targetSpot.Populate(item);
-
-        //scale the item down, set it's local position 0 0 0 
-        item.transform.localPosition = ItemLocalPositionOnSpot;
-        item.transform.localScale = ItemLocalScaleOnSpot;
-        item.transform.localRotation = Quaternion.identity;
-        // disable it's shadow
-        item.DisableShadows();
-
-        // disable it's collider / physics
-        item.DisablePhysics();
-
-        HandleFirstItemReachedSpot(item);
-
+        MoveItemToSpot(item, targetSpot, ()=> HandleFirstItemReachedSpot(item));
 
     }
 
