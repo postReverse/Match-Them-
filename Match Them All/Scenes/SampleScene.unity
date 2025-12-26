@@ -568,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6347934836714459341, guid: dac110449e98b6441b201ad1d9d52a74, type: 3}
       propertyPath: m_Name
-      value: Capsule (2)
+      value: Capsule
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -625,7 +625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6347934836714459341, guid: e2c4fa3c054564c48a72d17e0c23e7c1, type: 3}
       propertyPath: m_Name
-      value: Cylinder (2)
+      value: Cylinder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -730,7 +730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894354249829231501, guid: b271e01242e638746a1506c282c38cad, type: 3}
       propertyPath: m_Name
-      value: Cube (1)
+      value: Cube
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -792,7 +792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6347934836714459341, guid: e2c4fa3c054564c48a72d17e0c23e7c1, type: 3}
       propertyPath: m_Name
-      value: Cylinder (1)
+      value: Cylinder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -819,7 +819,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4459693927686883966, guid: fb1af49fae61120479a1234841d35c04, type: 3}
       propertyPath: m_Name
-      value: Sphere (3)
+      value: Sphere
       objectReference: {fileID: 0}
     - target: {fileID: 7189511485239768687, guid: fb1af49fae61120479a1234841d35c04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1086,7 +1086,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4459693927686883966, guid: fb1af49fae61120479a1234841d35c04, type: 3}
       propertyPath: m_Name
-      value: Sphere (2)
+      value: Sphere
       objectReference: {fileID: 0}
     - target: {fileID: 7189511485239768687, guid: fb1af49fae61120479a1234841d35c04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1183,7 +1183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6347934836714459341, guid: dac110449e98b6441b201ad1d9d52a74, type: 3}
       propertyPath: m_Name
-      value: Capsule (1)
+      value: Capsule
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1540,7 +1540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894354249829231501, guid: b271e01242e638746a1506c282c38cad, type: 3}
       propertyPath: m_Name
-      value: Cube (2)
+      value: Cube
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1562,7 +1562,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4459693927686883966, guid: fb1af49fae61120479a1234841d35c04, type: 3}
       propertyPath: m_Name
-      value: Sphere (1)
+      value: Sphere
       objectReference: {fileID: 0}
     - target: {fileID: 7189511485239768687, guid: fb1af49fae61120479a1234841d35c04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1659,7 +1659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6347934836714459341, guid: e2c4fa3c054564c48a72d17e0c23e7c1, type: 3}
       propertyPath: m_Name
-      value: Cylinder (3)
+      value: Cylinder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1741,7 +1741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6347934836714459341, guid: dac110449e98b6441b201ad1d9d52a74, type: 3}
       propertyPath: m_Name
-      value: Capsule (3)
+      value: Capsule
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1855,7 +1855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894354249829231501, guid: b271e01242e638746a1506c282c38cad, type: 3}
       propertyPath: m_Name
-      value: Cube (3)
+      value: Cube
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
